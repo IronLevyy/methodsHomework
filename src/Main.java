@@ -46,15 +46,28 @@ public class Main {
 
     public static void task3() {
         int deliveryDistance = 95;
-        if (deliveryDistance < 0) {
-            throw new RuntimeException("Неверная дистанция.");
+
+        switch (calculateDeliveryDays(deliveryDistance)) {
+            case 0:
+                System.out.println("Доставки нет.");
+                break;
+            case 1:
+                System.out.println("Доставка займёт 1 день.");
+                break;
+            case 2:
+                System.out.println("Доставка займёт 2 дня.");
+                break;
+            case 3:
+                System.out.println("Доставка займёт 3 дня.");
+                break;
         }
-        printDeliveryDays(deliveryDistance);
     }
 
-    public static void printDeliveryDays(int distance) {
+
+
+    public static int calculateDeliveryDays(int distance) {
         if (distance > 100) {
-            System.out.println("Доставки нет.");
+            return 0;
         }
         int deliveryDays = 2;
         if (distance < 20) {
@@ -62,6 +75,6 @@ public class Main {
         } else if (distance > 60) {
             deliveryDays++;
         }
-        System.out.printf("Доставка займёт: %d дней.", deliveryDays);
+        return deliveryDays;
     }
 }
